@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701172955) do
+ActiveRecord::Schema.define(version: 20160701234145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "room_trips", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "trip_id"
+  end
+
+  add_index "room_trips", ["room_id"], name: "index_room_trips_on_room_id", using: :btree
+  add_index "room_trips", ["trip_id"], name: "index_room_trips_on_trip_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "capacity"
@@ -42,4 +50,6 @@ ActiveRecord::Schema.define(version: 20160701172955) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "room_trips", "rooms"
+  add_foreign_key "room_trips", "trips"
 end

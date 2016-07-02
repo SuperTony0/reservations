@@ -6,6 +6,7 @@ class CreateRooms < ActiveRecord::Migration
       t.string :location
       t.string :number
       t.integer :price
+      t.references :trip, index: true, foreign_key: true
 
       t.timestamps null: false
     end
