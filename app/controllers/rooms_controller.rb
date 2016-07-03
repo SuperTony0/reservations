@@ -16,8 +16,8 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     #@room = Room.new
-    trip = Trip.find(params[:trip_id])
-    @room = trip.rooms.build
+    @trip = Trip.find(params[:trip_id])
+    @room = @trip.rooms.build
 
     respond_to do |format|
       format.html
@@ -33,14 +33,14 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    trip = Trip.find(params[:trip_id])
-    @room = trip.room.create(params(:room))
+    @trip = Trip.find(params[:trip_id])
+    @room = @trip.rooms.create(room_params)
     #@room = Room.new(room_params)
     #@room.trip_id = :trip_id
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to([@room.trip, @room], notice: 'Room was successfully created.') }
+        format.html { redirect_to trip_room_path(@trip.id, @room.id), notice: 'Room was successfully created.' }
       else
         format.html { render :new }
       end
