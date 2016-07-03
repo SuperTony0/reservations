@@ -15,7 +15,7 @@
   <%= @trip %>
 </p>
 
-<%= link_to 'Add Room', :controller => "rooms", :action => 'new', :trip => @trip %>
+<%= link_to 'Add Room', new_trip_room_path(@trip)%>
 
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Edit', edit_trip_path(@trip) %> 
 <%= link_to 'Back', trips_path %>

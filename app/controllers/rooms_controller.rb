@@ -4,7 +4,8 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    trip = Trip.find(params[:trip_id])
+    @rooms = trip.rooms
   end
 
   # GET /rooms/1
@@ -14,7 +15,15 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   def new
-    @room = Room.new
+    #@room = Room.new
+    trip = Trip.find(params[:trip_id])
+    @room = trip.rooms.build
+
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @room}
+    end
+
   end
 
   # GET /rooms/1/edit
@@ -24,16 +33,16 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    @room = Room.new(room_params)
-    @room.trip_id = @trip.id
+    trip = Trip.find(params[:trip_id])
+    @room = trip.room.create(params(:room))
+    #@room = Room.new(room_params)
+    #@room.trip_id = :trip_id
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
+        format.html { redirect_to([@room.trip, @room], notice: 'Room was successfully created.') }
       else
         format.html { render :new }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
   end

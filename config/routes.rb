@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :rooms
-  resources :trips
+  #resources :rooms
+  resources :trips do 
+    resources :rooms
+  end
   resources :users
 
   root 'trips#index'
