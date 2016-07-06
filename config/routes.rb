@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   #resources :rooms
   resources :trips do 
-    resources :rooms
+    resources :rooms, only: [:index, :new, :create]
   end
+  resources :rooms, only: [:show, :edit, :update, :destroy]
   resources :users
 
   root 'trips#index'

@@ -12,7 +12,38 @@
 
 <p>
   <strong> Rooms:</strong>
-  <%= @trip %>
+  
+      <table>
+      <thead>
+        <tr>
+          <th>Capacity</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Number</th>
+          <th>Price</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <% if room.trip_id == @trip.id %>
+              <td><%= room.capacity %></td>
+              <td><%= room.description %></td>
+              <td><%= room.location %></td>
+              <td><%= room.number %></td>
+              <td><%= room.price %></td>
+              <td><%= link_to 'Show', room %></td>
+              <td><%= link_to 'Edit', edit_room_path(room) %></td>
+              <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
 </p>
 
 <%= link_to 'Add Room', new_trip_room_path(@trip)%>
