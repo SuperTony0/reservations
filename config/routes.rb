@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   #resources :rooms
   resources :trips do 
     resources :rooms, only: [:index, :new, :create]

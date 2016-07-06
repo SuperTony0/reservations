@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702231155) do
+ActiveRecord::Schema.define(version: 20160706200912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "room_trips", force: :cascade do |t|
-    t.integer "room_id"
-    t.integer "trip_id"
-  end
-
-  add_index "room_trips", ["room_id"], name: "index_room_trips_on_room_id", using: :btree
-  add_index "room_trips", ["trip_id"], name: "index_room_trips_on_trip_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "capacity"
@@ -30,9 +22,9 @@ ActiveRecord::Schema.define(version: 20160702231155) do
     t.string   "location"
     t.string   "number"
     t.integer  "price"
+    t.integer  "trip_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "trip_id"
   end
 
   add_index "rooms", ["trip_id"], name: "index_rooms_on_trip_id", using: :btree
@@ -47,13 +39,22 @@ ActiveRecord::Schema.define(version: 20160702231155) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
   end
 
-  add_foreign_key "room_trips", "rooms"
-  add_foreign_key "room_trips", "trips"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
   add_foreign_key "rooms", "trips"
 end
