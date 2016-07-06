@@ -11,11 +11,7 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @rooms = Room.all
-    #@rooms.each do |room|
-     # unless room.trip_id == @trip.id
-      #  room
-      #end
-    #end
+    
 
   end
 
