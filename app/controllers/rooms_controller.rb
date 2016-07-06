@@ -4,14 +4,15 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    trip = Trip.find(params[:trip_id])
-    @rooms = trip.rooms
+    @trip = Trip.find(params[:trip_id])
+    @rooms = @trip.rooms
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @trip = Trip.find(params[:trip_id])
+    trip_id = @room.trip_id
+    @trip = Trip.find(trip_id)
 
   end
 
