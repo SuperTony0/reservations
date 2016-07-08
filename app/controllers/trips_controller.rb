@@ -18,7 +18,7 @@ class TripsController < ApplicationController
     @user = current_user
     @trip = Trip.find(params[:id])
     @user.trips << @trip
-    @trip.users << @user
+    
     redirect_to trip_path
   end
 
