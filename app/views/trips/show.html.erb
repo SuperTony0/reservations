@@ -11,7 +11,7 @@
 </p>
   <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
     <p>
-      <strong> Rooms:</strong>
+      <strong> Rooms:</strong> <%= @rooms.count(:conditions => "trip_id == @trip.id") %>
       
           <table>
           <thead>
@@ -45,6 +45,9 @@
     </p>
   <%end%>
 
+<% if user_signed_in? %>
+ <%= link_to 'Join Trip', join_trip_path(@trip)%>
+<%end %> 
 <%= link_to 'Add Room', new_trip_room_path(@trip)%>
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> 
