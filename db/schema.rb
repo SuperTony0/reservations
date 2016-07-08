@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706200912) do
+ActiveRecord::Schema.define(version: 20160708002351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "join_table_trip_users", force: :cascade do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "join_table_trip_users", ["trip_id"], name: "index_join_table_trip_users_on_trip_id", using: :btree
+  add_index "join_table_trip_users", ["user_id"], name: "index_join_table_trip_users_on_user_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "capacity"
@@ -56,5 +66,7 @@ ActiveRecord::Schema.define(version: 20160706200912) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "join_table_trip_users", "trips"
+  add_foreign_key "join_table_trip_users", "users"
   add_foreign_key "rooms", "trips"
 end

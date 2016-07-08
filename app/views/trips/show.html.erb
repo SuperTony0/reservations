@@ -9,7 +9,7 @@
   <strong>Date:</strong>
   <%= @trip.date %>
 </p>
-
+  <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
     <p>
       <strong> Rooms:</strong>
       
@@ -43,6 +43,7 @@
           </tbody>
         </table>
     </p>
+  <%end%>
 
 <%= link_to 'Add Room', new_trip_room_path(@trip)%>
 
