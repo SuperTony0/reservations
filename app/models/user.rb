@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, password_length: 8..128
-
+  has_many :join_table_trip_users
   has_many :trips, through: :join_table_trip_users
+
 end

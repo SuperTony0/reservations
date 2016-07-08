@@ -15,7 +15,11 @@ class TripsController < ApplicationController
   end
 
   def join_trip
-    current_user.trips <<@trip
+    @user = current_user
+    @trip = Trip.find(params[:id])
+    @user.trips << @trip
+    @trip.users << @user
+    redirect_to trip_path
   end
 
   # GET /trips/new
