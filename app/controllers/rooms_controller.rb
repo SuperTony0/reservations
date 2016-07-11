@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
     trip_id = @room.trip_id
     @trip = Trip.find(trip_id)
 
-  end
+  end 
 
   # GET /rooms/new
   def new

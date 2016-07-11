@@ -27,9 +27,5 @@
 
 <%= link_to 'Edit', edit_room_path %> |
 <%= link_to 'Back', trip_rooms_path(@trip.id) %>
+<%= link_to 'Add a Spot', new_room_spot_path(@room) %>
 
-<div>
-  <% @room.capacity.times do %>
-    <p> <%= link_to "Claim this spot", edit_room_path %> </p>
-  <%end%>
-</div>

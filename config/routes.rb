@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  #resources :rooms
+
   resources :trips do 
     resources :rooms, only: [:index, :new, :create]
   end
-  resources :rooms, only: [:show, :edit, :update, :destroy]
+  resources :rooms, only: [:show, :edit, :update, :destroy] do
+    resources :spots
+  end
+
+
   post 'trips/:id' => 'trips#join_trip', as: :join_trip
 
   root 'trips#index'
