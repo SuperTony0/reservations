@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :rooms, only: [:index, :new, :create]
   end
   resources :rooms, only: [:show, :edit, :update, :destroy]
-  
+  post 'trips/:id' => 'trips#join_trip', as: :join_trip
 
   root 'trips#index'
   # The priority is based upon order of creation: first created -> highest priority.

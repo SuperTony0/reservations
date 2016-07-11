@@ -11,8 +11,15 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @rooms = Room.all
-    
 
+  end
+
+  def join_trip
+    @user = current_user
+    @trip = Trip.find(params[:id])
+    @user.trips << @trip
+    
+    redirect_to trip_path
   end
 
   # GET /trips/new
