@@ -15,7 +15,7 @@
   <!-- shows the current rooms booked on the trip only if a room exists -->
   <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
     <p>
-      <strong> Rooms:</strong> <%= @rooms.count(:conditions => "trip_id == @trip.id") %>
+      <strong> Rooms:</strong> <%= @trip.rooms.count %>
       
           <table>
             <col width="110">
@@ -60,7 +60,9 @@
     <p><%= user.first_name %></p>
   <%end%>
 
-<% if user_signed_in? %>
+<% if @trip.users.include? current_user %>
+  <p> You are on this trip </p>
+<% elsif user_signed_in? %>
   <%= link_to 'Join Trip', join_trip_path, method: :post %>
 <% end %>
   

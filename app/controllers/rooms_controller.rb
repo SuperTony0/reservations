@@ -69,10 +69,9 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
-    @trip = Trip.find(params[:trip_id])
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to trip_rooms_path(@trip.id), notice: 'Room was successfully removed.' }
+      format.html { redirect_to trips_path, notice: 'Room was successfully removed.' }
       format.json { head :no_content }
     end
   end
