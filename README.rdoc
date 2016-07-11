@@ -1,28 +1,15 @@
-== README
+== Trip Reservation Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an applicaiton used for mass trip organization of room sharing.  
 
-Things you may want to cover:
+This allows people to register for the application, create a trip with a destination and date of occurance, add rooms to the trip.
 
-* Ruby version
+== IN PROGRESS and FUTURE IMPROVEMENTS
 
-* System dependencies
+Rooms will display spots that are available.  Users will be able to click on a spot to take that availability in the room.  
 
-* Configuration
+Facebook login addition
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Users will be able to add travel plans.  IE a car with 3 additional spots in it, or what flight they are taking and when.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
