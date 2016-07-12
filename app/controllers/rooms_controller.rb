@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
   def index
     @trip = Trip.find(params[:trip_id])
     @rooms = @trip.rooms
+    
   end
 
   # GET /rooms/1
@@ -13,6 +14,7 @@ class RoomsController < ApplicationController
   def show
     trip_id = @room.trip_id
     @trip = Trip.find(trip_id)
+    @spots = @room.spots
 
   end 
 
@@ -40,8 +42,7 @@ class RoomsController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @room = @trip.rooms.create(room_params)
-    #@room = Room.new(room_params)
-    #@room.trip_id = :trip_id
+    @room.owner_id = current_user.id
 
     respond_to do |format|
       if @room.save

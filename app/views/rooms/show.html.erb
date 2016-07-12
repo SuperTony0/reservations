@@ -25,7 +25,23 @@
   <%= @room.price %>
 </p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Spots: </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spots.each do |spot| %>
+      <tr>
+        <td><%= spot.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p></p>
 <%= link_to 'Edit', edit_room_path %> |
-<%= link_to 'Back', trip_rooms_path(@trip.id) %>
+<%= link_to 'Back', trip_rooms_path(@trip.id) %> |
 <%= link_to 'Add a Spot', new_room_spot_path(@room) %>
 

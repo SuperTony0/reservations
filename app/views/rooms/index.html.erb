@@ -22,9 +22,11 @@
         <td><%= room.location %></td>
         <td><%= room.number %></td>
         <td><%= room.price %></td>
-        <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'See Room Details', room %></td>
+        <% if room.is_owner?(current_user) %>
+            <td><%= link_to 'Edit', edit_room_path(room) %></td>
+            <td><%= link_to 'Delete Room', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end%>
       </tr>
     <% end %>
   </tbody>
