@@ -12,4 +12,11 @@ class Room < ActiveRecord::Base
       return false
     end
   end
+
+  def fill(room, current_user)
+    room.capacity.times do 
+      room.spots.create
+    end
+    room.spots.first.user_id = current_user.id
+  end
 end
