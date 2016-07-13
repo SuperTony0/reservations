@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :spots
   end
 
-
+  post 'rooms/:id' => 'spots#take', as: :take_spot
   post 'trips/:id' => 'trips#join_trip', as: :join_trip
 
   root 'trips#index'

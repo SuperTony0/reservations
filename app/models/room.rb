@@ -1,6 +1,6 @@
 class Room < ActiveRecord::Base
   belongs_to :trips
-  has_many :spots
+  has_many :spots, :dependent => :delete_all
   belongs_to :owner, class_name: "User"
 
   def is_owner?(current_user)
@@ -17,6 +17,6 @@ class Room < ActiveRecord::Base
     room.capacity.times do 
       room.spots.create
     end
-    room.spots.first.user_id = current_user.id
+    Spot.update(room.spots.first.id, :user_id => current_user.id)
   end
 end

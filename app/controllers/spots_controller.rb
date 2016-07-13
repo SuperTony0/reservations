@@ -12,6 +12,13 @@ class SpotsController < ApplicationController
   def show
   end
 
+  def take
+    @user = current_user
+    @spot = Spot.find(params[:id])
+    Spot.update(@spot.id, :user_id => @user.id)
+    redirect_to room_path(@spot.room_id)
+  end
+
   # GET /spots/new
   def new
     @room = Room.find(params[:room_id])

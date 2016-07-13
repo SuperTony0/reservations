@@ -2,7 +2,7 @@
 
 <p>
   <strong>Capacity:</strong>
-  <%= @room.capacity %>
+  <%= @room.spots.count %>
 </p>
 
 <p>
@@ -28,7 +28,7 @@
 <table>
   <thead>
     <tr>
-      <th>Spots: </th>
+      <strong>Spots: </strong>
     </tr>
   </thead>
 
@@ -36,7 +36,11 @@
     <% @spots.each do |spot| %>
       <tr>
         <td><%= spot.description %></td>
-        
+        <% if spot.user_id == nil %>
+          <td><%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %></td>
+        <% else %>
+          <%= User.find(spot.user_id).first_name  %>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
