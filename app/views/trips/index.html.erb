@@ -17,7 +17,7 @@
     <% @trips.each do |trip| %>
       <tr>
         <td><%= trip.destination %></td>
-        <td><%= trip.date %></td>
+        <td><%= trip.date_start.to_datetime.strftime('%D') %><p> - </p><%= trip.date_end.strftime('%D')%></td>
         <td><%= link_to 'Show', trip %></td>
         <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
         <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>

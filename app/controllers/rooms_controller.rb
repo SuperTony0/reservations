@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
-  # GET /rooms
+  # GET trip/:id/rooms
   # GET /rooms.json
   def index
     @trip = Trip.find(params[:trip_id])

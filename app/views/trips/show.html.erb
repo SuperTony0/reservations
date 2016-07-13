@@ -7,7 +7,7 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @trip.date %>
+  <%= @trip.date_start.to_datetime.strftime('%D')%><p>-</p><%=@trip.date_end.strftime('%D') %>
 </p>
   
 

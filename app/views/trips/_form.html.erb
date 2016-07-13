@@ -1,12 +1,14 @@
 <%= form_for(@trip) do |f| %>
   <% if @trip.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+    <div class="alert alert-danger" role="alert">
+      <h3><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h3>
 
       <ul>
-      <% @trip.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      
+        <% @trip.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </div>
       </ul>
     </div>
   <% end %>
@@ -16,8 +18,11 @@
     <%= f.text_field :destination %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
+    <%= f.label :date_start %><br>
+    <%= f.date_field :date_start %><br>
+    <%= f.label :date_end %><br>
+    <%= f.date_field :date_end %><br>
+    
   </div>
   <div class="actions">
     <%= f.submit %>
