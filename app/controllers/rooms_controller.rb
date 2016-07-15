@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
   def new
     #@room = Room.new
     @trip = Trip.find(params[:trip_id])
-    @room = @trip.rooms.build
+    @room = @trip.rooms.build 
 
     respond_to do |format|
       format.html
