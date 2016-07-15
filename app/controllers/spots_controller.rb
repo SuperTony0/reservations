@@ -15,7 +15,9 @@ class SpotsController < ApplicationController
   def take
     @user = current_user
     @spot = Spot.find(params[:id])
+    @room = Room.find(@spot.room_id)
     Spot.update(@spot.id, :user_id => @user.id)
+    SpotMailer.take_spot(@room.owner_id, @user.id).deliver_now!
     redirect_to room_path(@spot.room_id)
   end
 

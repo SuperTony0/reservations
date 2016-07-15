@@ -1,5 +1,5 @@
 class Spot < ActiveRecord::Base
-  belongs_to :rooms
+  has_one :room
 
   
 end

@@ -6,4 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-trips = Trip.create([ {destination: 'New York', date: '10/15/16'}])
+
+
+users = User.create!([ {first_name: 'Tony', last_name: 'Goldsmith', email: 'tony.h.goldsmith@gmail.com', password: 'Password'}, {first_name: 'Anthony', last_name: 'Goldsmith', email: 'anthony.h.goldsmith@gmail.com', password: 'Password'}, {first_name: 'Bill', last_name: 'Murray', email: 'tonyhgoldsmith@gmail.com', password: 'Password'}, {first_name: 'Sean', last_name: 'Connery', email: 'tonyh.goldsmith@gmail.com', password: 'Password'}])
+
+
