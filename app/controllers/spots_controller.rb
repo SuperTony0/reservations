@@ -16,13 +16,15 @@ class SpotsController < ApplicationController
     @user = current_user
     @spot = Spot.find(params[:id])
     @room = Room.find(@spot.room_id)
-    if Spot.validate(@room, @user)
+    if Spot.taken(@room, @user)
       Spot.update(@spot.id, :user_id => @user.id)
       #SpotMailer.take_spot(@room.owner_id, @user.id).deliver_now!
+      redirect_to room_path(@spot.room_id)
     else
-      
+      respond_to do |format|
+        format.html { redirect_to room_path(@spot.room_id), notice: 'You already have a spot in this room'}
+      end
     end
-    redirect_to room_path(@spot.room_id)
   end
 
   # GET /spots/new
