@@ -41,7 +41,9 @@
           <% else %>
              <td><%= User.find(spot.user_id).first_name  %></td>
           <%end%>
-        <td><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></td>
+        <% if current_user.id == @room.owner_id %>
+          <td><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -49,5 +51,8 @@
 <p></p>
 <%= link_to 'Edit', edit_room_path %> |
 <%= link_to 'Back', trip_path(@trip.id) %> |
-<%= link_to 'Add a Spot', new_room_spot_path(@room) %>
+
+<% if current_user.id == @room.owner_id %>
+  <%= link_to 'Add a Spot', new_room_spot_path(@room) %>
+<% end %>
 

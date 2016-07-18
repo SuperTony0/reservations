@@ -1,8 +1,8 @@
 class Trip < ActiveRecord::Base
   
   has_many :join_table_trip_users
-  has_many :users, through: :join_table_trip_users
-  has_many :rooms, :dependent => :delete_all
+  has_many :users, through: :join_table_trip_users, :dependent => :destroy
+  has_many :rooms, :dependent => :destroy
   validates :date_start, presence: true 
   validates :date_end, presence: true 
   validate :end_after_start, on: :create

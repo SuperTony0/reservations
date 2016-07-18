@@ -1,6 +1,6 @@
 class Room < ActiveRecord::Base
   belongs_to :trips
-  has_many :spots, :dependent => :delete_all
+  has_many :spots, :dependent => :destroy
   belongs_to :owner, class_name: "User"
 
   def is_owner?(current_user)

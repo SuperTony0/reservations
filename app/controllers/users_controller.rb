@@ -51,6 +51,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def finish_signup
+    #authorize! :update, @user 
+    if request.patch? && params[:user] #&& params[:user][:email]
+      if current_user.update(user_params)
+        #current_user.skip_reconfirmation!
+        sign_in(current_user, :bypass => true)
+        redirect_to trips_path, notice: 'Your profile was successfully updated.'
+      else
+        @show_errors = true
+      end
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -69,6 +82,8 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      accessible = [ :name, :email, :first_name, :last_name, :email, :password]
+      accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+      params.require(:user).permit(accessible)
     end
 end
