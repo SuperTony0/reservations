@@ -71,9 +71,10 @@ class SpotsController < ApplicationController
   # DELETE /spots/1
   # DELETE /spots/1.json
   def destroy
+    @room = Room.find(@spot.room_id)
     @spot.destroy
     respond_to do |format|
-      format.html { redirect_to spots_url, notice: 'Spot was successfully destroyed.' }
+      format.html { redirect_to room_path(@room), notice: 'Spot was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

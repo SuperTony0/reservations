@@ -37,7 +37,7 @@
               <div class= "container" >
                 <tr>
                   <% if room.trip_id == @trip.id %>
-                    <td><%= room.capacity %></td>
+                    <td><%= room.spots.count %></td>
                     <td><%= room.description %></td>
                     <td><%= room.location %></td>
                     <td><%= room.number %></td>

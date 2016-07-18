@@ -36,11 +36,12 @@
     <% @spots.each do |spot| %>
       <tr>
         <td><%= spot.description %></td>
-        <% if spot.user_id == nil %>
-          <td><%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %></td>
-        <% else %>
-          <%= User.find(spot.user_id).first_name  %>
-        <%end%>
+          <% if spot.user_id == nil %>
+            <td><%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %></td>
+          <% else %>
+             <td><%= User.find(spot.user_id).first_name  %></td>
+          <%end%>
+        <td><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
