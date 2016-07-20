@@ -10,8 +10,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     
     puts "TEST 2"
     
-    @user = User.new( email: @identity.email )
-    @identity.update_attribute( :user_id, @user.id )
+    @user = Registration.create( email: @identity.email )
+    #@identity.update_attribute( :user_id, @user.id )
     
 
     raise error

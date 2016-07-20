@@ -53,6 +53,7 @@ validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
     end
     user
   end
+
   def facebook
     identities.where( :provider => "facebook" ).first
   end
