@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, password_length: 8..128
   has_many :join_table_trip_users, dependent: :destroy
   has_many :trips, through: :join_table_trip_users
+  has_one :identity, dependent: :destroy
 
 
 validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
@@ -40,7 +41,7 @@ validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )
-        user.skip_confirmation!
+        #user.skip_confirmation!
         user.save!
       end
     end
@@ -51,6 +52,9 @@ validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
       identity.save!
     end
     user
+  end
+  def facebook
+    identities.where( :provider => "facebook" ).first
   end
 
   def email_verified?
