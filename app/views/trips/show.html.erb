@@ -1,26 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+      <p id="notice"><%= notice %></p>
+    <div class= 'col-md-8'>
+      <div class= 'box panel panel-default text-center'>
+        <p>
+          <strong>Event:</strong>
+          <h2 line-height= '50%'><%= @trip.destination %></h2>
+          <strong>Date:</strong>
+          <%= @trip.date_start.to_datetime.strftime('%D')%>-<%=@trip.date_end.strftime('%D') %>
+        </p>
+        <p>
+          <strong> Rooms:</strong> <%= @trip.rooms.count %>
+        </p>
+          
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default"><%= link_to 'Add Room', new_trip_room_path(@trip)%></button>
+            <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_trip_path(@trip) %> </button>
+            <button type="button" class="btn btn-default"><%= link_to 'Back', trips_path %></button>
+        </div>
 
-<p>
-  <strong>Destination:</strong>
-  <%= @trip.destination %>
-</p>
+          <% if @trip.users.include? current_user %>
+            <p> You are on this trip </p>
+          <% elsif user_signed_in? %>
+            <p><%= link_to 'Join Trip', join_trip_path, method: :post %></p>
+          <% end %>
+        </nav>
+      </div>
+    </div>
+    
+      <% if @trip.users.any? != nil %>
+    <div class='col-md-4' >
+        <div class= 'box panel panel-default text-center'>
+            <p> Travelers: </p>
+            <% @trip.users.each do |user| %>
+              <p><%= user.first_name %></p>
+            <%end%>
+          <%end %>
+        </div>
+    </div>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @trip.date_start.to_datetime.strftime('%D')%><p>-</p><%=@trip.date_end.strftime('%D') %>
-</p>
-  
 
 
   <!-- shows the current rooms booked on the trip only if a room exists -->
+ <div class="row">
   <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
     <p>
-      <strong> Rooms:</strong> <%= @trip.rooms.count %>
-      
-          <table>
-            <col width="110">
-            <col width="110">
-
+      <% @rooms.each do |room| %>
+      <div class= 'col-md-4'>
+      <div class= 'box panel panel-default text-center'>
+      <div class='container'>
+         <table>
           <thead>
             <tr>
               <th>Capacity</th>
@@ -33,7 +62,7 @@
           </thead>
 
           <tbody>
-            <% @rooms.each do |room| %>
+           
               <div class= "container" >
                 <tr>
                   <% if room.trip_id == @trip.id %>
@@ -44,30 +73,21 @@
                     <td><%= room.price %></td>
                 </tr>
                 <tr>
-                    <td><%= link_to 'Room Details', room %></td>
-                    <td><%= link_to 'Remove Room', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                   <td colspan="2"> <%= link_to 'Room Details', room %></td>
+                
+                   <td colspan="3"> <%= link_to 'Remove Room', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
                   <%end%>
                 </tr>
               </div>
             <% end %>
           </tbody>
         </table>
+        </div>
+        </div>
+        </div>
     </p>
   <%end%>
+</div>
 
-  <p> Travelers: </p>
-  <% @trip.users.each do |user| %>
-    <p><%= user.first_name %></p>
-  <%end%>
 
-<% if @trip.users.include? current_user %>
-  <p> You are on this trip </p>
-<% elsif user_signed_in? %>
-  <%= link_to 'Join Trip', join_trip_path, method: :post %>
-<% end %>
-  
-
-<%= link_to 'Add Room', new_trip_room_path(@trip)%>
-
-<%= link_to 'Edit', edit_trip_path(@trip) %> 
-<%= link_to 'Back', trips_path %>
