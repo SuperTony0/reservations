@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable, password_length: 8..128
+         :recoverable, :rememberable, :trackable
   has_many :join_table_trip_users, dependent: :destroy
   has_many :trips, through: :join_table_trip_users
   has_one :identity, dependent: :destroy
@@ -25,7 +25,7 @@ validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
     # Create the user if needed
     if user.nil?
-
+      puts "TEST 3"
       # Get the existing user by email if the provider gives us a verified email.
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
