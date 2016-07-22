@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'rooms/:id' => 'spots#take', as: :take_spot
   post 'trips/:id' => 'trips#join_trip', as: :join_trip
 
-  root 'pages#show', page: 'home'
+  root 'pages#index', page: 'home'
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
