@@ -4,6 +4,8 @@
 
 <h1>Listing Trips</h1>
 
+<% @trips.each do |trip| %>
+<div id='trip-container' class='container'>
 <table>
   <thead>
     <tr>
@@ -14,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @trips.each do |trip| %>
+    
       <%if trip.date_end > Date.current %>
         <tr>
           <td><%= trip.destination %></td>
@@ -24,9 +26,10 @@
           <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <%end%><!-- ends date validation -->
-    <% end %> <!-- ends trip loop -->
-  </tbody>
+      </tbody>
 </table>
+</div>
+<% end %> <!-- ends trip loop -->
 
 <br>
 
