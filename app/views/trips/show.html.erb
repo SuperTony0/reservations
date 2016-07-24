@@ -1,5 +1,6 @@
 <div class="row">
       <p id="notice"><%= notice %></p>
+
     <div class= 'col-md-8'>
       <div class= 'box panel panel-default text-center'>
         <p>
@@ -17,26 +18,24 @@
             <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_trip_path(@trip) %> </button>
             <button type="button" class="btn btn-default"><%= link_to 'Back', trips_path %></button>
         </div>
-
           <% if @trip.users.include? current_user %>
             <p> You are on this trip </p>
           <% elsif user_signed_in? %>
             <p><%= link_to 'Join Trip', join_trip_path, method: :post %></p>
           <% end %>
-        </nav>
       </div>
     </div>
     
       <% if @trip.users.any?  %>
         <div class='col-md-4' >
-            <div class= 'box panel panel-default text-center'>
-                <p> Travelers: </p>
-                <% @trip.users.each do |user| %>
-                  <%= image_tag user.identity.image %>
-                  <%= user.name %>
-                  <p></p>
-                <%end%>
-            </div>
+          <div class= 'box panel panel-default text-center'>
+            <p> Travelers: </p>
+            <% @trip.users.each do |user| %>
+              <%= image_tag user.identity.image %>
+              <%= user.name %>
+              <p></p>
+            <%end%>
+          </div>
         </div>
       <%end %>
 </div>
@@ -46,47 +45,31 @@
   <!-- shows the current rooms booked on the trip only if a room exists -->
  <div class="row">
   <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
-    <p>
-      <% @rooms.each do |room| %>
-      <div class= 'col-md-4'>
+    <% @rooms.each do |room| %>
+      <div class= 'col-sm-4'>
       <div class= 'box panel panel-default text-center'>
-      <div class='container'>
-         <table>
-          <thead >
-            <tr>
-              <th >Spots Open</th>
-              <th>Description</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-
-          <tbody>
-                <div class= "container" >
-                  <tr>
-                    <% if room.trip_id == @trip.id %>
-                      <td ><%= room.spots.count %></td>
-                      <td><%= room.description %></td>
-                      <td><%= room.location %></td>
-                  </tr>
-                  <tr>
-                     <td > <%= link_to 'Room Details', room %></td>
-                     <% if room.owner_id == current_user.id %>
-                        <td > <%= link_to 'Remove Room', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                      <%end%>
-                  </tr>
-                    <%end%> <!-- ending room description loop-->
-                  </tr>
-                </div> <!--ending container div -->
-          </tbody>
-        
-        </table>
-        
-      </div><!--close container div-->
+        <div class="row">
+          <div class="col-sm-4">Spots open  </div>
+          <div class="col-sm-4">Description </div>
+          <div class="col-sm-4"> Location   </div>
+        </div>
+        <div clas="row">    
+          <% if room.trip_id == @trip.id %>
+            <div class="col-sm-4"><%= room.spots.count %></div>
+            <div class="col-sm-4"><%= room.description %></div>
+            <div class="col-sm-4"><%= room.location %></div>
+        </div>
+        <div class="row">
+        <div class="col-sm-6"><%= link_to 'Room Details', room %></div>
+        <% if room.owner_id == current_user.id %>
+        <div class="col-sm-6"><%=link_to 'Remove Room',room, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+        <%end%>
+          <%end%> <!-- ending room description loop-->
+        </div>
       </div><!--close box panel div-->
       </div><!--close col div-->
-      <% end %>
-    </p>
+    <% end %>
   <%end%>
-</div>
+</div> <!-- ends div row
 
 

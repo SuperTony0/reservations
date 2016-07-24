@@ -17,3 +17,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+
+body {
+  background-image: image-url("map2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.panel {
+  opacity: .96;
+}
