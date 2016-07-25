@@ -1,29 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Capacity:</strong>
-  <%= @room.spots.count %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @room.description %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @room.location %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @room.number %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @room.price %>
-</p>
+<div class="row panel container">
+ 
+  <p>
+    <h1 class="text-center"><%= @room.description %></h1>
+  </p>
+  <p>
+    <strong>Location:</strong>
+    <%= @room.location %>
+  </p>
+  <p>
+    <strong>Number:</strong>
+    <%= @room.number %>
+  </p>
+  <p>
+    <strong>Price:</strong>
+    <%= @room.price %>
+  </p>
+</div>
 
 <table>
   <thead>
