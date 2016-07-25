@@ -27,6 +27,13 @@ class SpotsController < ApplicationController
     end
   end
 
+  def remove_user
+    @spot=Spot.find(params[:id])
+    @room = Room.find(@spot.room_id)
+    @spot.user_id = nil
+    redirect_to room_path(@room.id)
+  end
+
   # GET /spots/new
   def new
     @room = Room.find(params[:room_id])

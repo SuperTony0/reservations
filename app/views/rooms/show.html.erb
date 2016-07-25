@@ -19,29 +19,31 @@
   </p>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <strong>Spots: </strong>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @spots.each do |spot| %>
+<div class="row panel container">
+  <table>
+    <thead>
       <tr>
-        <td><%= spot.description %></td>
-          <% if spot.user_id == nil %>
-            <td><%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %></td>
-          <% else %>
-             <td><%= User.find(spot.user_id).first_name  %></td>
-          <%end%>
-        <% if current_user.id == @room.owner_id %>
-          <td><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></td>
-        <% end %>
+        <strong>Spots: </strong>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @spots.each do |spot| %>
+        <tr>
+          <td><%= spot.description %></td>
+            <% if spot.user_id == nil %>
+              <td><%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %></td>
+            <% else %>
+               <td><%= User.find(spot.user_id).name  %></td>
+            <%end%>
+          <% if current_user.id == @room.owner_id %>
+            <td><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></td>
+            <td><%= link_to 'Remove from Spot', remove_user_path(spot.id) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <p></p>
 <%= link_to 'Edit', edit_room_path %> |
 <%= link_to 'Back', trip_path(@trip.id) %> |
@@ -50,3 +52,4 @@
   <%= link_to 'Add a Spot', new_room_spot_path(@room) %>
 <% end %>
 
+</div>
