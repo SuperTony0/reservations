@@ -12,4 +12,12 @@ class Trip < ActiveRecord::Base
       errors.add(:date_end, "Must be same day or later than start")
     end
   end
+
+  def join_trip
+    @user = current_user
+    @trip = Trip.find(params[:id])
+    @user.trips << @trip
+    
+    redirect_to trip_path
+  end
 end

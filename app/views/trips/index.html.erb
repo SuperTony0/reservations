@@ -4,7 +4,7 @@
 
 <div class="row panel container text-center">
   <h1><strong>Upcoming Trips</strong></h1> 
-  <%= button_to new_trip_path, class:"button btn-primary" do %>
+  <%= button_to new_trip_path, method: :get, class:"button btn-primary" do %>
     <span class= "glyphicon glyphicon-plus"></span>New Trip
   <%end %>
 </div>
@@ -19,7 +19,7 @@
       </div>
       <div class="col-sm-1"> 
           <p></p>  
-          <p><%= button_to 'View', trip %></p>
+          <p><%= button_to 'View', trip_path(trip), method: :get %></p>
           <p><%= button_to 'Edit', edit_trip_path(trip), method: :get %></p>
       </div>
     </div>
