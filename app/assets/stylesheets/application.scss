@@ -19,11 +19,12 @@
 @import 'bootstrap/theme';
 
 body {
-  background-image: image-url("map2.jpg");
+  background-image: image-url("ChicagoBWMap.png");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .panel {
-  opacity: .96;
+  opacity: .94;
+  background-color: #F0F0F0;
 }
