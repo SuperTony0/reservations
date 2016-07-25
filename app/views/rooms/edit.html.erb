@@ -1,5 +1,44 @@
-<h1>Editing Room</h1>
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3 panel panel-default container">
+  <h2>Room Details</h2>
+    <%= form_for @room, url: {action: "edit"} do |f| %>
+      <% if @room.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
+          <ul>
+          <% @room.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<%= render 'edit_form' %>
+      <div class="field">
+        <%= f.label :capacity %><br>
+        <%= f.number_field :capacity %>
+      </div>
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_field :description %>
+      </div>
+      <div class="field">
+        <%= f.label :location %><br>
+        <%= f.text_field :location %>
+      </div>
+      <div class="field">
+        <%= f.label :number %><br>
+        <%= f.text_field :number %>
+      </div>
+      <div class="field">
+        <%= f.label :price %><br>
+        <%= f.number_field :price %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+    <%= link_to 'Back', trip_path(@trip.id) %>
+</div>
+</div>
 
-<%= link_to 'Back', trip_rooms_path(@trip.id) %>
+

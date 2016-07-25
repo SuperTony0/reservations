@@ -45,7 +45,9 @@
     </tbody>
   </table>
 <p></p>
-<%= link_to 'Edit', edit_room_path %> |
+<% if @room.owner_id == current_user.id %>
+  <%= link_to 'Edit', edit_room_path %> |
+<%end%>
 <%= link_to 'Back', trip_path(@trip.id) %> |
 
 <% if current_user.id == @room.owner_id %>

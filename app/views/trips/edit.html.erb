@@ -1,6 +1,42 @@
-<h1>Editing Trip</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @trip %> |
-<%= link_to 'Back', trips_path %>
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3 panel panel-default container"> 
+  <h1>Editing Trip</h1>
+  <%= form_for(@trip) do |f| %>
+    <% if @trip.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h3><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h3>
+
+        <ul>
+        
+          <% @trip.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </div>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :destination %><br>
+      <%= f.text_field :destination %>
+    </div>
+    <div class="field">
+      <%= f.label :date_start %><br>
+      <%= f.date_field :date_start %><br>
+      <%= f.label :date_end %><br>
+      <%= f.date_field :date_end %><br>
+      
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  <%= link_to 'Show', @trip %> |
+  <%= link_to 'Back', trips_path %>
+</div>
+</div>
+
+
+
