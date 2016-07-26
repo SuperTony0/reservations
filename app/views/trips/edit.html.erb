@@ -2,7 +2,7 @@
 
 <div class="row">
 <div class="col-sm-6 col-sm-offset-3 panel panel-default container"> 
-  <h1>Editing Trip</h1>
+  <h1>Trip Details</h1>
   <%= form_for(@trip) do |f| %>
     <% if @trip.errors.any? %>
       <div class="alert alert-danger" role="alert">
@@ -33,8 +33,7 @@
       <%= f.submit %>
     </div>
   <% end %>
-  <%= link_to 'Show', @trip %> |
-  <%= link_to 'Back', trips_path %>
+  <%= link_to 'Back', @trip, class:"btn-sm btn-default"%>
 </div>
 </div>
 

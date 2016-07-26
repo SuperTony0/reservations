@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row panel container">
- 
   <p>
     <h1 class="text-center"><%= @room.description %></h1>
   </p>
@@ -17,33 +16,33 @@
     <strong>Price:</strong>
     <%= @room.price %>
   </p>
+  <div class="btn-group" role="group" aria-label="...">
+    <% if @room.owner_id == current_user.id%>
+      <%=link_to 'Edit', edit_room_path, method: :get, role:"button", class:"btn btn-default"%>    
+      <%= link_to 'Add a Spot', new_room_spot_path(@room), role:"button", class:"btn btn-default" %>
+    <%end%>
+    <%= link_to 'Back', trips_path(@trip.id), role:"button", class:"btn btn-default" %> 
+  </div>
 </div>
 
 <div class="row panel container">
-  <table>
-    <thead>
-      <tr>
         <strong>Spots: </strong>
-      </tr>
-    </thead>
 
-    <tbody>
+ 
       <% @spots.each do |spot| %>
-        <tr>
-          <td><%= spot.description %></td>
+       <%= spot.description %>
             <% if spot.user_id == nil %>
-              <td><%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %></td>
+              <%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %>
             <% else %>
-               <td><%= User.find(spot.user_id).name  %></td>
+               <%= User.find(spot.user_id).name  %>
             <%end%>
           <% if current_user.id == @room.owner_id %>
-            <td><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></td>
-            <td><%= link_to 'Remove from Spot', remove_user_path(spot.id) %></td>
+            <%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %>
+            <%= link_to 'Remove from Spot', remove_user_path(spot.id) %>
           <% end %>
-        </tr>
+        
       <% end %>
-    </tbody>
-  </table>
+  
 <p></p>
 <% if @room.owner_id == current_user.id %>
   <%= link_to 'Edit', edit_room_path %> |
