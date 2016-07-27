@@ -16,7 +16,7 @@ class Trip < ActiveRecord::Base
   def join_trip
     @user = current_user
     @trip = Trip.find(params[:id])
-    @user.trips << @trip
+    @user.trips << @trip 
     
     redirect_to trip_path
   end

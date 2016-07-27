@@ -19,3 +19,26 @@
 //= require_tree .
 
 
+$(document).on('ready', function() {
+ $("#btn1").on("click", function(){
+   $("#travelers").show();
+   $("#rooms").hide();
+   $(this).hide(); 
+   $("#btn2").show();
+ });
+ $("#btn2").on("click", function() {
+   $("#rooms").show();
+   $("#travelers").hide();
+   $(this).hide(); 
+   $("#btn1").show();
+ });
+ $("#join-trip-button").on("click", function() {
+    $("#join-trip-button").hide();
+    $.ajax({
+      url: 'trip/join_trip',
+      type: 'put'
+    });   
+ });
+});
+
+

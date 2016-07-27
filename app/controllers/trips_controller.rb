@@ -18,8 +18,10 @@ class TripsController < ApplicationController
     @user = current_user
     @trip = Trip.find(params[:id])
     @user.trips << @trip
-    
-    redirect_to trip_path
+    respond_to do |format|
+      format.html {redirect_to trip_path}
+      format.js {}
+    end
   end
 
   # GET /trips/new

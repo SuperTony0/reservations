@@ -1,5 +1,5 @@
 <div class="row">
-      <p id="notice"><%= notice %></p>
+      <p id="notice"><%= notice %></p> 
 
     <div class= 'col-sm-8 col-sm-offset-2'>
       <div class= 'box panel panel-default text-center'>
@@ -21,7 +21,7 @@
           <% if @trip.users.include? current_user %>
             <p> You are on this trip </p>
           <% elsif user_signed_in? %>
-            <p><%= link_to 'Join Trip', join_trip_path, method: :post %></p>
+            <p><%= link_to 'Join Trip', join_trip_path, method: :post, remote: true, id:"join-trip-button"%></p>
           <% end %>
           <button id="btn1" type="button" class="btn btn-default"> Show Travelers </button>
           <button id="btn2" type="button" class="btn btn-default"> Show Rooms </button>

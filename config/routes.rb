@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   post 'rooms/:id' => 'spots#take', as: :take_spot
   post 'trips/:id' => 'trips#join_trip', as: :join_trip
+  put 'trips/join_trip' => 'trips#join_trip'
   get 'room/:id' => "spots#remove_user", as: :remove_user
 
   root 'pages#index', page: 'home'
