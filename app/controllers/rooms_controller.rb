@@ -46,7 +46,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        @room.fill(@room, current_user)
+        @room.fill(current_user)
         format.html { redirect_to trip_rooms_path(@trip.id, @room.id), notice: 'Room was successfully created.' }
       else
         format.html { render :new }

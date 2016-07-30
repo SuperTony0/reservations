@@ -22,9 +22,14 @@ body {
   background-image: image-url("ChicagoBWMap.png");
   background-repeat: no-repeat;
   background-size: 100%;
+  color: #c0b283;
+}
+
+a {
+  color: #D3D9DF;
 }
 
 .panel {
   opacity: .94;
-  background-color: #F0F0F0;
+  background-color: #373737 ;
 }

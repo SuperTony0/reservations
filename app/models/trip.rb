@@ -1,7 +1,7 @@
 class Trip < ActiveRecord::Base
   
   has_many :join_table_trip_users
-  has_many :users, through: :join_table_trip_users, :dependent => :destroy
+  has_many :users, through: :join_table_trip_users
   has_many :rooms, :dependent => :destroy
   validates :date_start, presence: true 
   validates :date_end, presence: true 
@@ -21,3 +21,4 @@ class Trip < ActiveRecord::Base
     redirect_to trip_path
   end
 end
+

@@ -26,31 +26,32 @@
 </div>
 
 <div class="row panel container">
-        <strong>Spots: </strong>
-
- 
-      <% @spots.each do |spot| %>
-       <%= spot.description %>
-            <% if spot.user_id == nil %>
-              <%= link_to 'Take this Spot!', take_spot_path(spot.id), method: :post %>
-            <% else %>
-               <%= User.find(spot.user_id).name  %>
-            <%end%>
-          <% if current_user.id == @room.owner_id %>
-            <%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %>
-            <%= link_to 'Remove from Spot', remove_user_path(spot.id) %>
-          <% end %>
-        
+  <strong>Spots: </strong>
+  <div class="row">
+    <% @room.spots.each do |spot| %>
+    <div class="panel container panel-default col-sm-2">  
+      <p><%= spot.description %></p>
+      <% if spot.user_id == nil %>
+        <p><%= link_to 'Claim!', take_spot_path(spot.id), method: :post %></p>
+      <% else %>
+        <%= if User.find(spot.user_id).identity != nil then image_tag(User.find(spot.user_id).identity.image) else image_tag("user-default.png") end %>
+        <p><%= User.find(spot.user_id).name  %></p>
+      <%end%>
+      <% if current_user.id == @room.owner_id %>
+        <p><%= link_to 'Remove spot', [@room, spot],  data: { confirm: 'Are you sure?' }, method: :delete %></p>
+        <p><%= link_to 'Remove from Spot', remove_user_path(spot.id) %></p>
       <% end %>
-  
-<p></p>
-<% if @room.owner_id == current_user.id %>
-  <%= link_to 'Edit', edit_room_path %> |
-<%end%>
-<%= link_to 'Back', trip_path(@trip.id) %> |
+    </div>    
+    <% end %>
+  </div>
 
-<% if current_user.id == @room.owner_id %>
-  <%= link_to 'Add a Spot', new_room_spot_path(@room) %>
-<% end %>
+  <% if @room.owner_id == current_user.id %>
+    <%= link_to 'Edit', edit_room_path %> |
+  <%end%>
+  <%= link_to 'Back', trip_path(@trip.id) %> |
+
+  <% if current_user.id == @room.owner_id %>
+    <%= link_to 'Add a Spot', new_room_spot_path(@room) %>
+  <% end %>
 
 </div>

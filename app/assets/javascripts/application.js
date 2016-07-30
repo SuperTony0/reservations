@@ -21,14 +21,14 @@
 
 $(document).on('ready', function() {
  $("#btn1").on("click", function(){
-   $("#travelers").show();
-   $("#rooms").hide();
+   $("#travelers").slideDown();
+   $("#rooms").slideUp();
    $(this).hide(); 
    $("#btn2").show();
  });
  $("#btn2").on("click", function() {
-   $("#rooms").show();
-   $("#travelers").hide();
+   $("#rooms").slideDown();
+   $("#travelers").slideUp();
    $(this).hide(); 
    $("#btn1").show();
  });
@@ -39,6 +39,8 @@ $(document).on('ready', function() {
       type: 'put'
     });   
  });
-});
+ 
+
+
 
 

@@ -13,10 +13,10 @@ class Room < ActiveRecord::Base
     end
   end
 
-  def fill(room, current_user)
-    room.capacity.times do 
-      room.spots.create
+  def fill(current_user)
+    self.capacity.times do 
+      self.spots.create
     end
-    Spot.update(room.spots.first.id, :user_id => current_user.id)
+    Spot.update(self.spots.first.id, :user_id => current_user.id)
   end
 end

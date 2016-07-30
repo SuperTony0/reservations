@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
   has_many :join_table_trip_users, dependent: :destroy
   has_many :trips, through: :join_table_trip_users
+  has_many :rooms, through: :trips 
   has_one :identity, dependent: :destroy
 
 
