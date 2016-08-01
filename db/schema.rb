@@ -29,16 +29,6 @@ ActiveRecord::Schema.define(version: 20160725174409) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "join_table_trip_users", force: :cascade do |t|
-    t.integer  "trip_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "join_table_trip_users", ["trip_id"], name: "index_join_table_trip_users_on_trip_id", using: :btree
-  add_index "join_table_trip_users", ["user_id"], name: "index_join_table_trip_users_on_user_id", using: :btree
-
   create_table "rooms", force: :cascade do |t|
     t.integer  "capacity"
     t.string   "description"
@@ -62,9 +52,19 @@ ActiveRecord::Schema.define(version: 20160725174409) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "trip_users", force: :cascade do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "trip_users", ["trip_id"], name: "index_trip_users_on_trip_id", using: :btree
+  add_index "trip_users", ["user_id"], name: "index_trip_users_on_user_id", using: :btree
+
   create_table "trips", force: :cascade do |t|
     t.string   "destination"
-    t.string   "date_start"
+    t.datetime "date_start"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.datetime "date_end"
@@ -94,9 +94,9 @@ ActiveRecord::Schema.define(version: 20160725174409) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "identities", "users"
-  add_foreign_key "join_table_trip_users", "trips"
-  add_foreign_key "join_table_trip_users", "users"
   add_foreign_key "rooms", "trips"
   add_foreign_key "rooms", "users", column: "owner_id"
   add_foreign_key "spots", "rooms"
+  add_foreign_key "trip_users", "trips"
+  add_foreign_key "trip_users", "users"
 end

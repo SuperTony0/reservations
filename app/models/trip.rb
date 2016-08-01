@@ -1,10 +1,10 @@
 class Trip < ActiveRecord::Base
-  
-  has_many :join_table_trip_users
-  has_many :users, through: :join_table_trip_users
+
+  has_many :trip_users
+  has_many :users, through: :trip_users
   has_many :rooms, :dependent => :destroy
-  validates :date_start, presence: true 
-  validates :date_end, presence: true 
+  validates :date_start, presence: true
+  validates :date_end, presence: true
   validate :end_after_start, on: :create
 
   def end_after_start
@@ -16,9 +16,8 @@ class Trip < ActiveRecord::Base
   def join_trip
     @user = current_user
     @trip = Trip.find(params[:id])
-    @user.trips << @trip 
-    
+    @user.trips << @trip
+
     redirect_to trip_path
   end
 end
-

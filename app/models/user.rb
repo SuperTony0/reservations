@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable
-  has_many :join_table_trip_users, dependent: :destroy
-  has_many :trips, through: :join_table_trip_users
-  has_many :rooms, through: :trips 
+  has_many :trip_users, dependent: :destroy
+  has_many :trips, through: :trip_users
+  has_many :rooms, through: :trips
   has_one :identity, dependent: :destroy
 
 

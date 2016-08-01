@@ -1,5 +1,5 @@
 <div class="row">
-      <p id="notice"><%= notice %></p> 
+      <p id="notice"><%= notice %></p>
 
     <div class= 'col-sm-8 col-sm-offset-2'>
       <div class= 'box panel panel-default text-center'>
@@ -12,11 +12,11 @@
         <p>
           <strong> Rooms:</strong> <%= @trip.rooms.count %>
         </p>
-          
+
         <div class="btn-group" role="group" aria-label="...">
           <%=link_to 'Add Room', new_trip_room_path(@trip), method: :get, role:"button", class:"btn btn-default"%>
           <%= link_to 'Edit', edit_trip_path(@trip), role:"button", class:"btn btn-default" %>
-          <%= link_to 'Back', trips_path, role:"button", class:"btn btn-default" %> 
+          <%= link_to 'Back', trips_path, role:"button", class:"btn btn-default" %>
         </div>
           <% if @trip.users.include? current_user %>
             <p> You are on this trip </p>
@@ -51,7 +51,7 @@
   <!-- shows the current rooms booked on the trip only if a room exists -->
  <div id="rooms" class="row">
   <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
-    <% @rooms.each do |room| %>
+    <% @trip.rooms.each do |room| %>
       <div class= 'col-sm-4'>
       <div class= 'box panel panel-default text-center'>
         <div class="row">
@@ -59,7 +59,7 @@
           <div class="col-sm-4">Description </div>
           <div class="col-sm-4"> Location   </div>
         </div>
-        <div clas="row">    
+        <div clas="row">
           <% if room.trip_id == @trip.id %>
             <div class="col-sm-4"><%= room.spots.count %></div>
             <div class="col-sm-4"><%= room.description %></div>
@@ -77,5 +77,3 @@
     <% end %>
   <%end%>
 </div> <!-- ends div row
-
-
