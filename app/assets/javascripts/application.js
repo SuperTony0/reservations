@@ -32,6 +32,7 @@ $(document).ready( function() {
    $(this).hide();
    $("#btn1").show();
  });
+ $('.jumbotron').fadeIn(1000).removeClass("hidden");
  $("#join-trip-button").on("click", function() {
     $("#join-trip-button").hide();
     $.ajax({

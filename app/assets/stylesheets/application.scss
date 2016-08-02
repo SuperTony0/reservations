@@ -19,17 +19,31 @@
 @import 'bootstrap/theme';
 
 body {
-  background-image: image-url("ChicagoBWMap.png");
+  //background-image: image-url("ChicagoBWMap.png");
+  background-color: white;
   background-repeat: no-repeat;
   background-size: 100%;
-  color: #c0b283;
+  color: gray;
 }
 
 a {
-  color: #D3D9DF;
+  color: blue;
+}
+
+.jumbotron {
+  background-color: rgba(64, 153, 255, .7);
+
 }
 
 .panel {
   opacity: .94;
-  background-color: #373737 ;
+  background-color: white ;
+  border-style: solid;
+  border-color: #4099ff;
+  border-width: medium;
+}
+
+.navbar-header, .navbar-nav, .navbar-default, .navbar, .navbar-brand, .navbar-collapse, #nav {
+  background-color: #4099ff;
+  link: white;
 }
