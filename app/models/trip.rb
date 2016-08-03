@@ -20,4 +20,11 @@ class Trip < ActiveRecord::Base
 
     redirect_to trip_path
   end
+  def total_spots
+    total = 0
+    self.rooms.each do |room|
+      total += room.spots.count
+    end
+    return total
+  end
 end

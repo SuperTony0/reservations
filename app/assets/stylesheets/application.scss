@@ -20,11 +20,13 @@
 
 body {
   //background-image: image-url("ChicagoBWMap.png");
-  background-color: white;
+  background-color: #E0ECF8;
   background-repeat: no-repeat;
   background-size: 100%;
-  color: gray;
+  color: #191919;
 }
+
+
 
 a {
   color: blue;
@@ -36,11 +38,11 @@ a {
 }
 
 .panel {
-  opacity: .94;
+  opacity: .8;
   background-color: white ;
   border-style: solid;
-  border-color: #4099ff;
-  border-width: medium;
+  border-color: black;
+  border-width: thin;
 }
 
 .navbar-header, .navbar-nav, .navbar-default, .navbar, .navbar-brand, .navbar-collapse, #nav {

@@ -1,32 +1,38 @@
 <%= render 'layouts/home' unless user_signed_in? %>
 
 <p id="notice "><%= notice %></p>
-
-<div class="row panel container text-center">
-  <h1><strong>Upcoming Trips</strong></h1> 
+<div class='row'>
+<div class="col-sm-6 col-sm-offset-3 panel container text-center">
+  <h1><strong>Upcoming Trips</strong></h1>
   <%= button_to new_trip_path, method: :get, class:"btn btn-default" do %>
     <span class= "glyphicon glyphicon-plus"></span>New Trip
   <%end %>
 </div>
+</div>
 
-
-<% @trips.each do |trip| %> 
+<div class='row'>
+<% @trips.each do |trip| %>
   <%if trip.date_end > Date.current %>
-    <div class="row panel container">
-      <div class="col-sm-2">
+    <div class="panel container col-md-5 col-md-offset-1">
+      <div class="col-sm-6">
         <h2><strong><%= trip.destination %></strong></h2>
         <%= trip.date_start.to_datetime.strftime('%D') %> - <%= trip.date_end.strftime('%D')%>
       </div>
-      <div class="col-sm-1"> 
-          <p></p>  
+      <div class="col-sm-3">
+          <p></p>
           <p><%= button_to 'View', trip_path(trip), method: :get , class:"btn btn-sm btn-default"%></p>
           <p><%= button_to 'Edit', edit_trip_path(trip), method: :get, class:"btn btn-sm btn-default" %></p>
       </div>
+      <div class='col-sm-3' >
+        <div class="row">
+          Travelers: <%= trip.users.count %>
+        </div>
+        <div class="row">
+          Spots still open: <%= trip.total_spots %>
+        </div>
+      </div>
+
     </div>
   <%end%><!-- ends date validation -->
 <% end %> <!-- ends trip loop -->
-
-
-
-
- 
+</div>

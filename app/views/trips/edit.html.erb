@@ -1,7 +1,7 @@
 
 
 <div class="row">
-<div class="col-sm-6 col-sm-offset-3 panel panel-default container"> 
+<div class="col-sm-6 col-sm-offset-3 panel panel-default container">
   <h1>Trip Details</h1>
   <%= form_for(@trip) do |f| %>
     <% if @trip.errors.any? %>
@@ -9,7 +9,7 @@
         <h3><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h3>
 
         <ul>
-        
+
           <% @trip.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
@@ -27,15 +27,12 @@
       <%= f.date_field :date_start %><br>
       <%= f.label :date_end %><br>
       <%= f.date_field :date_end %><br>
-      
+
     </div>
     <div class="actions">
       <%= f.submit %>
     </div>
   <% end %>
-  <%= link_to 'Back', @trip, class:"btn-sm btn-default"%>
+  <%= link_to 'Back', trips_path, class:"btn-sm btn-default"%>
 </div>
 </div>
-
-
-
