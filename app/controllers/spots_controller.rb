@@ -22,7 +22,7 @@ class SpotsController < ApplicationController
       redirect_to room_path(@spot.room_id)
     else
       respond_to do |format|
-        format.html { redirect_to room_path(@spot.room_id), notice: 'You already have a spot in this room'}
+        format.html { redirect_to room_path(@spot.room_id), notice: 'You already have a spot in this room!'}
       end
     end
   end
@@ -52,7 +52,7 @@ class SpotsController < ApplicationController
 
     respond_to do |format|
       if @spot.save
-        format.html { redirect_to room_path(@room.id), notice: 'Spot was successfully created.' }
+        format.html { redirect_to room_path(@room.id), notice: 'You have a new spot!' }
         format.json { render :show, status: :created, location: @spot }
       else
         format.html { render :new }
@@ -81,7 +81,7 @@ class SpotsController < ApplicationController
     @room = Room.find(@spot.room_id)
     @spot.destroy
     respond_to do |format|
-      format.html { redirect_to room_path(@room), notice: 'Spot was successfully destroyed.' }
+      format.html { redirect_to room_path(@room), notice: 'Spot removed!' }
       format.json { head :no_content }
     end
   end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
 
-  resources :trips do 
+  resources :trips do
     resources :rooms, only: [:index, :new, :create]
   end
   resources :rooms, only: [:show, :edit, :update, :destroy] do
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   post 'rooms/:id' => 'spots#take', as: :take_spot
   post 'trips/:id' => 'trips#join_trip', as: :join_trip
-  put 'trips/join_trip' => 'trips#join_trip'
+  get 'trips/trip/join_trip' => 'trips#join_trip'
   put 'spots/take' => 'spots#take'
   get 'room/:id' => "spots#remove_user", as: :remove_user
 

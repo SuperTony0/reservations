@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   def index
     @trip = Trip.find(params[:trip_id])
     @rooms = @trip.rooms
-    
+
   end
 
   # GET /rooms/1
@@ -16,13 +16,13 @@ class RoomsController < ApplicationController
     @trip = Trip.find(trip_id)
     @spots = @room.spots
 
-  end 
+  end
 
   # GET /rooms/new
   def new
     #@room = Room.new
     @trip = Trip.find(params[:trip_id])
-    @room = @trip.rooms.build 
+    @room = @trip.rooms.build
 
     respond_to do |format|
       format.html
@@ -47,7 +47,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         @room.fill(current_user)
-        format.html { redirect_to trip_rooms_path(@trip.id, @room.id), notice: 'Room was successfully created.' }
+        format.html { redirect_to trip_path(@trip.id), notice: 'Room was successfully created.' }
       else
         format.html { render :new }
       end
@@ -74,7 +74,7 @@ class RoomsController < ApplicationController
     @trip = Trip.find(@room.trip_id)
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to trip_path(@trip), notice: 'Room was successfully removed.' }
+      format.html { redirect_to trip_path(@trip), notice: 'Room removed.' }
       format.json { head :no_content }
     end
   end

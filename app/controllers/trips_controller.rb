@@ -15,11 +15,13 @@ class TripsController < ApplicationController
   end
 
   def join_trip
-    @trip = Trip.find(params[:id])
-    current_user.trips << @trip
+    puts "TEST"
+    puts params[:id]
+    @trip = Trip.find_by_id(params[:id])
+    #current_user.trips << @trip
     respond_to do |format|
-      format.html {redirect_to trip_path}
-      format.js {render :json => current_user.identity}
+      #format.html {redirect_to trip_path}
+      format.js {render :json => current_user.email}
     end
   end
 
@@ -53,7 +55,7 @@ class TripsController < ApplicationController
   def update
     respond_to do |format|
       if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        format.html { redirect_to @trip, notice: 'Trip details saved' }
         format.json { render :show, status: :ok, location: @trip }
       else
         format.html { render :edit }

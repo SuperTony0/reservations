@@ -1,6 +1,5 @@
 <%= render 'layouts/home' unless user_signed_in? %>
 
-<p id="notice "><%= notice %></p>
 <div class='row'>
 <div class="col-sm-6 col-sm-offset-3 panel container text-center">
   <h1><strong>Upcoming Trips</strong></h1>
@@ -18,8 +17,7 @@
         <h2><strong><%= trip.destination %></strong></h2>
         <%= trip.date_start.to_datetime.strftime('%D') %> - <%= trip.date_end.strftime('%D')%>
       </div>
-      <div class="col-sm-3">
-          <p></p>
+      <div class="col-sm-3" style="margin-top:15px">
           <p><%= button_to 'View', trip_path(trip), method: :get , class:"btn btn-sm btn-default"%></p>
           <p><%= button_to 'Edit', edit_trip_path(trip), method: :get, class:"btn btn-sm btn-default" %></p>
       </div>
