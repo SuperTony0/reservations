@@ -15,12 +15,11 @@ class TripsController < ApplicationController
   end
 
   def join_trip
-    @user = current_user
     @trip = Trip.find(params[:id])
-    @user.trips << @trip
+    current_user.trips << @trip
     respond_to do |format|
       format.html {redirect_to trip_path}
-      format.js {}
+      format.js {render :json => current_user.identity}
     end
   end
 

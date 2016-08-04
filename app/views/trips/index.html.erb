@@ -13,7 +13,7 @@
 <div class='row'>
 <% @trips.each do |trip| %>
   <%if trip.date_end > Date.current %>
-    <div class="panel container col-md-5 col-md-offset-1">
+    <div class="panel container col-md-5" id='trip-box'>
       <div class="col-sm-6">
         <h2><strong><%= trip.destination %></strong></h2>
         <%= trip.date_start.to_datetime.strftime('%D') %> - <%= trip.date_end.strftime('%D')%>
@@ -24,7 +24,7 @@
           <p><%= button_to 'Edit', edit_trip_path(trip), method: :get, class:"btn btn-sm btn-default" %></p>
       </div>
       <div class='col-sm-3' >
-        <div class="row">
+        <div class="row" style="margin-top:40%">
           Travelers: <%= trip.users.count %>
         </div>
         <div class="row">

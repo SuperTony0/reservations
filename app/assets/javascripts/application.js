@@ -37,7 +37,8 @@ $(document).ready( function() {
     $("#join-trip-button").hide();
     $.ajax({
       url: 'trip/join_trip',
-      type: 'put'
+      type: 'get',
+      success: function(data) {}
     });
- });
+  });
 });
