@@ -18,10 +18,11 @@ class TripsController < ApplicationController
     puts "TEST"
     puts params[:id]
     @trip = Trip.find_by_id(params[:id])
+    puts @trip.destination
     #current_user.trips << @trip
     respond_to do |format|
       #format.html {redirect_to trip_path}
-      format.js {}
+      format.js {flash.now[:notice] = "You joined this trip"}
     end
   end
 

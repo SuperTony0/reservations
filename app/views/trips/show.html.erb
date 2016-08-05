@@ -1,6 +1,4 @@
 <div class="row">
-
-
     <div class= 'col-sm-8 col-sm-offset-2'>
       <div class= 'box panel panel-default text-center'>
         <p>
@@ -36,7 +34,7 @@
           <div class="row">
             <p> Travelers: </p>
             <% @trip.users.each do |user| %>
-              <div class="col-sm-4 container">
+              <div class="col-sm-4 container" id="all-travelers">
                 <%= if user.identity != nil then image_tag(user.identity.image) else image_tag("user-default.png") end %>
                 <%= if user.name != nil then user.name else user.first_name + ' ' + user.last_name end %>
               </div>

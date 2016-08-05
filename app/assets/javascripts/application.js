@@ -36,23 +36,12 @@ $(document).ready( function() {
  $('.alert').fadeOut(1500);
  $("#join-trip-button").on("click", function() {
    event.preventDefault();
-   var result = 'test';
     $("#join-trip-button").hide();
     $.ajax({
-      url: 'trip/join_trip',
+      url: 'trip/join_trip/',
       type: 'get',
       dataType: 'script',
       data: parseInt($("#join-trip-button").attr('data'))
-      //success: function(data) {
-
-      //}
-      //error: function(data) {
-      //  alert('didnt work');
-      //},
-      //complete: function(data) {
-      //  alert(data);
-      //}
     });
-
   });
 });
