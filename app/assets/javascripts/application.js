@@ -35,23 +35,24 @@ $(document).ready( function() {
  $('.jumbotron').fadeIn(1000).removeClass("hidden");
  $('.alert').fadeOut(1500);
  $("#join-trip-button").on("click", function() {
+   event.preventDefault();
    var result = 'test';
     $("#join-trip-button").hide();
     $.ajax({
       url: 'trip/join_trip',
       type: 'get',
-      dataType: 'json',
-      data: parseInt($("#join-trip-button").attr('data')),
-      success: function(data) {
-        var result = $.parseJSON(data);
-        alert(result);
-      },
+      dataType: 'script',
+      data: parseInt($("#join-trip-button").attr('data'))
+      //success: function(data) {
+
+      //}
       //error: function(data) {
       //  alert('didnt work');
       //},
-      complete: function(data) {
-        alert(data);
-      }
+      //complete: function(data) {
+      //  alert(data);
+      //}
     });
+
   });
 });

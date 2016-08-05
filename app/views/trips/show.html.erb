@@ -1,12 +1,12 @@
 <div class="row">
-    
+
 
     <div class= 'col-sm-8 col-sm-offset-2'>
       <div class= 'box panel panel-default text-center'>
         <p>
           <strong>Event:</strong>
           <h2 line-height= '50%'><%= @trip.destination %></h2>
-          <strong>Date:</strong>
+          <strong id="title">Date:</strong>
           <%= @trip.date_start.to_datetime.strftime('%D')%>-<%=@trip.date_end.strftime('%D') %>
         </p>
         <p>

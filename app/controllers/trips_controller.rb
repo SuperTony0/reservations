@@ -21,7 +21,7 @@ class TripsController < ApplicationController
     #current_user.trips << @trip
     respond_to do |format|
       #format.html {redirect_to trip_path}
-      format.js {render :json => current_user.email}
+      format.js {}
     end
   end
 
