@@ -2,3 +2,4 @@ var html = '<div><%= current_user.email %></div>';
 $('#flash').html('<div class="alert alert-info"><%= flash[:notice] %></div>').fadeOut(1500);
 $("#title").append(html);
 $("#all-travelers").append(html);
+$("#join-trip-button").hide();

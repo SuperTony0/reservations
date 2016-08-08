@@ -34,14 +34,14 @@ $(document).ready( function() {
  });
  $('.jumbotron').fadeIn(1000).removeClass("hidden");
  $('.alert').fadeOut(1500);
- $("#join-trip-button").on("click", function() {
-   event.preventDefault();
-    $("#join-trip-button").hide();
-    $.ajax({
-      url: 'trip/join_trip/',
-      type: 'get',
-      dataType: 'script',
-      data: parseInt($("#join-trip-button").attr('data'))
-    });
-  });
+ // $("#join-trip-button").on("click", function() {
+ //   event.preventDefault();
+ //    
+ //    $.ajax({
+ //      url: 'trip/join_trip/',
+ //      type: 'get',
+ //      dataType: 'script',
+ //      data: parseInt($("#join-trip-button").attr('data'))
+ //    });
+ //  });
 });

@@ -15,10 +15,7 @@ class TripsController < ApplicationController
   end
 
   def join_trip
-    puts "TEST"
-    puts params[:id]
     @trip = Trip.find_by_id(params[:id])
-    puts @trip.destination
     #current_user.trips << @trip
     respond_to do |format|
       #format.html {redirect_to trip_path}
