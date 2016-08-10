@@ -46,7 +46,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        @room.fill(current_user)
+        @room.fill(current_user) unless @room.capacity == nil
         format.html { redirect_to trip_path(@trip.id), notice: 'Room was successfully created.' }
       else
         format.html { render :new }
@@ -76,6 +76,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to trip_path(@trip), notice: 'Room removed.' }
       format.json { head :no_content }
+      format.js {flash.now[:notice] = "Room Deleted"}
     end
   end
 

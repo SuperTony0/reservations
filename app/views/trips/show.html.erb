@@ -51,7 +51,7 @@
   <%if @rooms.any? {|room| room.trip_id == @trip.id }%>
     <% @trip.rooms.each do |room| %>
       <div class= 'col-sm-4'>
-      <div class= 'box panel panel-default text-center'>
+      <div class= 'box panel panel-default text-center' style="position: relative; min-height:85px">
         <div class="row">
           <div class="col-sm-4">Spots open  </div>
           <div class="col-sm-4">Description </div>
@@ -63,13 +63,14 @@
             <div class="col-sm-4"><%= room.description %></div>
             <div class="col-sm-4"><%= room.location %></div>
         </div>
-        <div class="row">
-        <div class="col-sm-6"><%= link_to 'Room Details', room %></div>
-        <% if room.owner_id == current_user.id %>
-        <div class="col-sm-6"><%=link_to 'Remove Room',room, method: :delete, data: { confirm: 'Are you sure?' }%></div>
-        <%end%>
+        <div class="row" style="position:absolute; bottom:0">
+          <div class="col-md-4 col-sm-offset-2"><%= link_to 'Room Details', room %></div>
+          <% if room.owner_id == current_user.id %>
+          <div class="col-md-4 col-sm-offset-2"><%=link_to 'Remove Room',room, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+          <%end%>
+          </div>
           <%end%> <!-- ending room description loop-->
-        </div>
+
       </div><!--close box panel div-->
       </div><!--close col div-->
     <% end %>
